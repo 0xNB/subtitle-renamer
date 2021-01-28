@@ -1,5 +1,7 @@
 # subtitle-renamer
 
+![GitHub all releases](https://img.shields.io/github/downloads/Zyboarg/subtitle-renamer/total)
+
 ```
    _______  ______  ___  _____  _____   __  _______
   / __/ _ \/_  __/ / _ \/ __/ |/ / _ | /  |/  / __/
