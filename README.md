@@ -1,6 +1,6 @@
 # subtitle-renamer
 
-![GitHub all releases](https://img.shields.io/github/downloads/Zyboarg/subtitle-renamer/total)
+![GitHub all releases](https://img.shields.io/github/downloads/Zyboarg/subtitle-renamer/total) ![APM](https://img.shields.io/apm/l/vim-mode)
 
 ```
    _______  ______  ___  _____  _____   __  _______
