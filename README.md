@@ -12,5 +12,6 @@
 
 Subtitle Renamer is a simple CLI Tool that lets users unify subtitle files with movie files. 
 This can be done manually or in automatic mode with `--auto`. 
+`auto` mode will try to unify movie file names, subtitle names by fetching their corresponding name from IMDB or various other name providing backends.
 
 User might also change subtitle size on the fly to normalize over different vendors of `.srt` files with the `--normalize-subs` option.
