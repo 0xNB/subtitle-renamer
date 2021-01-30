@@ -69,8 +69,8 @@ func DetermineFileType(info os.FileInfo) AnalyzedFile {
 
 }
 
-// ScanFiles takes an absolute path or relative path and outputs a
-func ScanFiles(folderPath string) []AnalyzedFile {
+// ReadFilesFromDir takes an absolute path or relative path and outputs a
+func ReadFilesFromDir(folderPath string) []AnalyzedFile {
 
 	scannedFiles := make([]AnalyzedFile, 0, 100)
 
@@ -82,4 +82,6 @@ func ScanFiles(folderPath string) []AnalyzedFile {
 	for _, file := range files {
 		scannedFiles = append(scannedFiles, DetermineFileType(file))
 	}
+
+	return scannedFiles
 }
