@@ -70,7 +70,7 @@ func DetermineFileType(info os.FileInfo) AnalyzedFile {
 }
 
 // ScanFiles takes an absolute path or relative path and outputs a
-func ScanFiles(folderPath string) {
+func ScanFiles(folderPath string) []AnalyzedFile {
 
 	scannedFiles := make([]AnalyzedFile, 0, 100)
 
