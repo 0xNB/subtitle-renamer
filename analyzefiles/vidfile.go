@@ -11,8 +11,8 @@ type VidFile struct {
 }
 
 // AnalyzedFileInterface
-func (vid VidFile) FileType() string {
-	return "vid"
+func (vid VidFile) FileType() FileType {
+	return VID
 }
 
 func (vid VidFile) FileName() string {

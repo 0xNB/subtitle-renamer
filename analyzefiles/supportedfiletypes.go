@@ -4,12 +4,12 @@ package analyzefiles
 
 func SupportedVideoFileTypes() []string {
 	return []string{
-		"mkv",
+		".mkv",
 	}
 }
 
 func SupportedSubFileTypes() []string {
 	return []string{
-		"srt",
+		".srt",
 	}
 }

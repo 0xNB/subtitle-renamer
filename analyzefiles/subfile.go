@@ -10,9 +10,9 @@ type SubFile struct {
 	fileInfo os.FileInfo
 }
 
-// AnalyzedFileInterface
-func (sub SubFile) FileType() string {
-	return "sub"
+// FileType AnalyzedFileInterface
+func (sub SubFile) FileType() FileType {
+	return SUB
 }
 
 func (sub SubFile) FileName() string {

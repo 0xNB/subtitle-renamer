@@ -19,7 +19,7 @@ func containsString(strings []string, s string) bool {
 
 func ContainsFileName(fileNames []string, a analyzefiles.AnalyzedFile, t *testing.T) {
 	if !containsString(fileNames, a.FileName()) {
-		t.Fail()
+		t.Errorf("Couldn't find required filename %s!", a.FileName())
 	}
 }
 
@@ -34,11 +34,14 @@ func TestReadFiles(t *testing.T) {
 	}{
 		{
 			inFolderName: "/demo_dir",
-			fileNames:    []string{"terminator.srt", "test.mkv"},
+			fileNames:    []string{"terminator.srt", "test.mkv", "titanic.mkv"},
 		},
 	}
 	for _, c := range cases {
 		res := analyzefiles.ReadFilesFromDir(testFileDir + c.inFolderName)
+		if len(res) != len(c.fileNames) {
+			t.Error("Length of returned filenames doesn't match test length!")
+		}
 		for _, analyzedFile := range res {
 			ContainsFileName(c.fileNames, analyzedFile, t)
 		}

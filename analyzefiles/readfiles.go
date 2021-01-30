@@ -10,17 +10,30 @@ import (
 	"strings"
 )
 
+// FileType is a generic type for a file loaded from disk
+type FileType int
+
 const (
-	MKV = iota
-	ASS = iota
-	MP4 = iota
-	SRT = iota
+	// VID is a generic video type
+	VID FileType= iota
+	// SUB is a generic sub type
+	SUB 
+	// MKV files represent video formats
+	MKV 
+	// ASS file are a form of subtitle file
+	ASS 
+	// MP4 files represent video files but shouldn't be too common anymore
+	MP4
+	// SRT files represent subtitles.
+	SRT
+	// NIL type is an unrecognized file
+	NIL
 )
 
 // AnalyzedFile can return its own type, the underlying file or name
 type AnalyzedFile interface {
 	FileName() string
-	FileType() string
+	FileType() FileType
 	FileInfo() os.FileInfo
 }
 
@@ -31,7 +44,7 @@ type NilFile struct{}
 func (n NilFile) FileName() string { return "" }
 
 // FileType for NilFiles is nil
-func (n NilFile) FileType() string { return "nil" }
+func (n NilFile) FileType() FileType { return NIL }
 
 // FileInfo for NilFiles is nil
 func (n NilFile) FileInfo() os.FileInfo { return nil }
