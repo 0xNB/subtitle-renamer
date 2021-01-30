@@ -1,4 +1,4 @@
-// The analyzefiles package gives use some utility methods to read files from disk in the current folder
+// Package analyzefiles package gives use some utility methods to read files from disk in the current folder
 // and determine their file type, sorting them in categories defined by analyze files.
 package analyzefiles
 
@@ -7,7 +7,6 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-	"slice"
 	"strings"
 )
 
@@ -25,33 +24,55 @@ type AnalyzedFile interface {
 	FileInfo() os.FileInfo
 }
 
-func DetermineFileType(info os.FileInfo) AnalyzedFile {
-	
-	fileExt := strings.ToLower(filepath.Ext(name))
-	
-	switch { 
-		case slice.ContainsString(SupportedVideoFileTypes(), fileExt): 
-			// supported video file extension detected
-			return VidFile{
-				name: info.Name(),
-				fileInfo: info,
-			}
-		case slice.ContainsString(SupportedSubFileTypes(), fileExt):
-			// supported sub file extension detected
-			return SubFile{
-				name: info.Name(),
-				fileInfo: info,
-			}
-		default 
-	}	
+// NilFile is a unrecognized file
+type NilFile struct{}
 
-	
+// FileName for Nilfiles don't need a name
+func (n NilFile) FileName() string { return "" }
+
+// FileType for NilFiles is nil
+func (n NilFile) FileType() string { return "nil" }
+
+// FileInfo for NilFiles is nil
+func (n NilFile) FileInfo() os.FileInfo { return nil }
+
+func containsString(strings []string, s string) bool {
+	for _, cur := range strings {
+		if cur == s {
+			return true
+		}
+	}
+	return false
+}
+
+// DetermineFileType generates a new AnalyzedFile from the given FileInformation is respect to supported video and sub formats
+func DetermineFileType(info os.FileInfo) AnalyzedFile {
+
+	fileExt := strings.ToLower(filepath.Ext(info.Name()))
+
+	switch {
+	case containsString(SupportedVideoFileTypes(), fileExt):
+		// supported video file extension detected
+		return VidFile{
+			name:     info.Name(),
+			fileInfo: info,
+		}
+	case containsString(SupportedSubFileTypes(), fileExt):
+		// supported sub file extension detected
+		return SubFile{
+			name:     info.Name(),
+			fileInfo: info,
+		}
+	default:
+		return NilFile{}
+	}
+
 }
 
 // ScanFiles takes an absolute path or relative path and outputs a
 func ScanFiles(folderPath string) {
 
-	scannedFiles := make([]File, 0, 100)
+	scannedFiles := make([]AnalyzedFile, 0, 100)
 
 	files, err := ioutil.ReadDir(folderPath)
 	if err != nil {
@@ -59,9 +80,6 @@ func ScanFiles(folderPath string) {
 	}
 
 	for _, file := range files {
-		
-		append(scannedFiles, {
-			
-		})
+		scannedFiles = append(scannedFiles, DetermineFileType(file))
 	}
 }
