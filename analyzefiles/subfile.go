@@ -7,6 +7,7 @@ import "os"
 // Subfile identifies files that contain subtitles
 type SubFile struct {
 	name     string
+	fullPath string
 	fileInfo os.FileInfo
 }
 

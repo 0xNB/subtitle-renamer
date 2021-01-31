@@ -58,8 +58,8 @@ func containsString(strings []string, s string) bool {
 	return false
 }
 
-// DetermineFileType generates a new AnalyzedFile from the given FileInformation is respect to supported video and sub formats
-func DetermineFileType(info os.FileInfo) AnalyzedFile {
+// AnalyzedFileFromFileInfo generates a new AnalyzedFile from the given FileInformation is respect to supported video and sub formats
+func AnalyzedFileFromFileInfo(info os.FileInfo) AnalyzedFile {
 
 	fileExt := strings.ToLower(filepath.Ext(info.Name()))
 
@@ -93,7 +93,7 @@ func ReadFilesFromDir(folderPath string) []AnalyzedFile {
 	}
 
 	for _, file := range files {
-		scannedFiles = append(scannedFiles, DetermineFileType(file))
+		scannedFiles = append(scannedFiles, AnalyzedFileFromFileInfo(file))
 	}
 
 	return scannedFiles
