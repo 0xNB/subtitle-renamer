@@ -13,12 +13,13 @@ func lcSubStr(s1 string, s2 string) {
 
 	for i := 0; i < l1; i++ {
 		for j := 0; j < l2; j++ {
-			
+
 		}
 	}
 
 }
 
 func deduceCommonName(files []AnalyzedFile) (bool, string) {
-
+	// TOOD impl
+	return false, ""
 }
