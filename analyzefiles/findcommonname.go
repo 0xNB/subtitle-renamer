@@ -2,17 +2,37 @@
 // and determine their file type, sorting them in categories defined by analyze files.
 package analyzefiles
 
-// we use this function to deduce the longest common substring in a list of string
-func lcSubStr(s1 string, s2 string) {
+func max(x, y int) int {
+	if x < y {
+		return y
+	}
+	return x
+}
+
+func LcSubstr(strinsg []string) string {
+	return ""
+}
+
+// LcSubStr computes the longest common substring of two strings.
+func LcSubStr(s1 string, s2 string) string {
 	// create two dim array that holds our longest common substrings for DP
 	l1 := len(s1)
 	l2 := len(s2)
 
-	lcDP := make([]string, l1*l2)
+	lcDP := make([]int, l1*l2)
 	var resultLen int
 
 	for i := 0; i < l1; i++ {
 		for j := 0; j < l2; j++ {
+
+			if i == 0 || j == 0 {
+				lcDP[i*l1+j] = 0
+			} else if s1[i-1] == s2[j-1] {
+				lcDP[i*l1+j] = lcDP[(i-1)*l1+(j-1)] + 1
+				resultLen = max(resultLen, lcDP[i*l1+j])
+			} else {
+				lcDP[i*l1+j] = 0
+			}
 
 		}
 	}
