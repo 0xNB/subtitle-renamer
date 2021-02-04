@@ -9,13 +9,13 @@ func max(x, y int) int {
 	return x
 }
 
-func LcSubstr(strinsg []string) string {
+func LcSubstr(strings []string) string {
 	return ""
 }
 
-// LcSubStr computes the longest common substring of two strings.
-func LcSubStr(s1 string, s2 string) string {
-	// create two dim array that holds our longest common substrings for DP
+// LcSubStr computes the longest common substring of two strings using dynamic programming
+func LcSubStr(s1 string, s2 string) (string, int) {
+	
 	l1 := len(s1)
 	l2 := len(s2)
 
@@ -26,13 +26,13 @@ func LcSubStr(s1 string, s2 string) string {
 	for i := 0; i < l1; i++ {
 		for j := 0; j < l2; j++ {
 			if i == 0 || j == 0 {
-				lcDP[i*l1+j] = 0
+				lcDP[j*l1+i] = 0
 			} else if s1[i-1] == s2[j-1] {
-				lcDP[i*l1+j] = lcDP[(i-1)*l1+(j-1)] + 1
-				resultLen = max(resultLen, lcDP[i*l1+j])
+				lcDP[j*l1+i] = lcDP[(j-1)*l1+(i-1)] + 1
+				resultLen = max(resultLen, lcDP[j*l1+i])
 				lastIndex = i
 			} else {
-				lcDP[i*l1+j] = 0
+				lcDP[j*l1+i] = 0
 			}
 
 		}
@@ -40,7 +40,7 @@ func LcSubStr(s1 string, s2 string) string {
 
 	// convert to go runes and return the slice of those runes
 	runes := []rune(s1)
-	return string(runes[lastIndex : lastIndex+resultLen])
+	return string(runes[lastIndex : lastIndex+resultLen]), resultLen
 
 }
 

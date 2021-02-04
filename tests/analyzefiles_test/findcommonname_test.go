@@ -21,14 +21,14 @@ func TestFindCommonNames(t *testing.T) {
 		{
 			string1:          "this is a teststring 123",
 			string2:          "another teststring 345",
-			longestSubstring: " testtring ",
+			longestSubstring: " teststring ",
 		},
 	}
 
 	for _, c := range cases {
-		result := analyzefiles.LcSubStr(c.string1, c.string2)
+		result, len := analyzefiles.LcSubStr(c.string1, c.string2)
 		if result != c.longestSubstring {
-			t.Errorf("Longest substring didn't match result! Got [%s] Expected [%s]", result, c.longestSubstring)
+			t.Errorf("Longest substring didn't match result! Got [%s] Expected [%s], length was %d", result, c.longestSubstring, len)
 		}
 	}
 }
