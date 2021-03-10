@@ -15,7 +15,7 @@ func LcSubstr(strings []string) string {
 
 // LcSubStr computes the longest common substring of two strings using dynamic programming
 func LcSubStr(s1 string, s2 string) (string, int) {
-	
+
 	l1 := len(s1)
 	l2 := len(s2)
 
@@ -29,8 +29,10 @@ func LcSubStr(s1 string, s2 string) (string, int) {
 				lcDP[j*l1+i] = 0
 			} else if s1[i-1] == s2[j-1] {
 				lcDP[j*l1+i] = lcDP[(j-1)*l1+(i-1)] + 1
+				if resultLen < lcDP[j*l1+i] {
+					lastIndex = i
+				}
 				resultLen = max(resultLen, lcDP[j*l1+i])
-				lastIndex = i
 			} else {
 				lcDP[j*l1+i] = 0
 			}
