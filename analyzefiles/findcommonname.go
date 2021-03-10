@@ -9,6 +9,7 @@ func max(x, y int) int {
 	return x
 }
 
+// LcSubstr finds the longest common substring in a list of strings given to it
 func LcSubstr(strings []string) string {
 	return ""
 }
@@ -16,27 +17,15 @@ func LcSubstr(strings []string) string {
 // LcSubStr computes the longest common substring of two strings using dynamic programming
 func LcSubStr(s1 string, s2 string) (string, int) {
 
-	l1 := len(s1)
-	l2 := len(s2)
+	m := len(s1) + 1
+	n := len(s2) + 1
 
-	lcDP := make([]int, l1*l2)
-	var resultLen int
-	var lastIndex int
+	var LCSuff []int = make([]int, (m+1)*(n+1))
+	var result int = 0
 
-	for i := 0; i < l1; i++ {
-		for j := 0; j < l2; j++ {
-			if i == 0 || j == 0 {
-				lcDP[j*l1+i] = 0
-			} else if s1[i-1] == s2[j-1] {
-				lcDP[j*l1+i] = lcDP[(j-1)*l1+(i-1)] + 1
-				if resultLen < lcDP[j*l1+i] {
-					lastIndex = i
-				}
-				resultLen = max(resultLen, lcDP[j*l1+i])
-			} else {
-				lcDP[j*l1+i] = 0
-			}
-
+	for i := 0; i < m; i++ {
+		for j := 0; j < m; j++ {
+			
 		}
 	}
 
