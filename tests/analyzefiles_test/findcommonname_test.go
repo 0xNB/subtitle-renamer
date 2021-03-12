@@ -23,6 +23,11 @@ func TestFindCommonNames(t *testing.T) {
 			string2:          "another teststring 345",
 			longestSubstring: " teststring ",
 		},
+		{
+			string1: "12345",
+			string2: "67889",
+			longestSubstring: "",
+		},
 	}
 
 	for _, c := range cases {
