@@ -73,8 +73,8 @@ func AnalyzedFileFromFileInfo(info os.FileInfo) AnalyzedFile {
 	case containsString(SupportedSubFileTypes(), fileExt):
 		// supported sub file extension detected
 		return SubFile{
-			name:     info.Name(),
-			fileInfo: info,
+			Name:     info.Name(),
+			OSFileInfo: info,
 		}
 	default:
 		return NilFile{}

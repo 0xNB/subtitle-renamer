@@ -26,6 +26,14 @@ func Max(x, y int) int {
     return x
 }
 
+func LcSubStrWrap(s1 string, s2 string) (string, int) {
+	// first we wrap both stings
+	s1 = s1 + s1;
+	s2 = s2 + s2;
+
+	longestSubstring, length := LcSubStr(s1, s2);
+	return longestSubstring, length 
+}
 
 // LcSubStr computes the longest common substring of two strings using dynamic programming
 func LcSubStr(s1 string, s2 string) (string, int) {
@@ -66,7 +74,15 @@ func LcSubStr(s1 string, s2 string) (string, int) {
 
 }
 
-func deduceCommonName(files []AnalyzedFile) (bool, string) {
-	// TOOD impl
-	return false, ""
+func DeduceCommonName(files []AnalyzedFile) (bool, string) {
+
+	if len(files) == 0 {
+		return false, "";
+	}
+
+	if len(files) == 1 {
+		return true, files[0].FileName();
+	}
+    longestCommon, _ := LcSubStrWrap(files[0].FileName(), files[1].FileName());
+	return true, longestCommon
 }

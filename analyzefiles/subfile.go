@@ -6,10 +6,10 @@ import "os"
 
 // Subfile identifies files that contain subtitles
 type SubFile struct {
-	name     string
-	fullPath string
-	fileInfo os.FileInfo
-}
+	Name     string
+	FullPath string
+	OSFileInfo os.FileInfo
+} 
 
 // FileType AnalyzedFileInterface
 func (sub SubFile) FileType() FileType {
@@ -17,9 +17,9 @@ func (sub SubFile) FileType() FileType {
 }
 
 func (sub SubFile) FileName() string {
-	return sub.name
+	return sub.Name
 }
 
 func (sub SubFile) FileInfo() os.FileInfo {
-	return sub.fileInfo
+	return sub.OSFileInfo
 }
